@@ -1,0 +1,2414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-03-29 Tue 16:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spacemacs cheetsheet March 2022</title>
+<meta name="author" content="Muhammad Ridho" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Spacemacs cheetsheet March 2022</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org151be34">1. Use mirrors in China</a></li>
+<li><a href="#org2b22935">2. Visual selection</a></li>
+<li><a href="#org2ef5f84">3. Editing</a>
+<ul>
+<li><a href="#org3b36dda">3.1. General Editing</a></li>
+<li><a href="#org5c5ab17">3.2. Programmer Editing</a></li>
+</ul>
+</li>
+<li><a href="#org53f119f">4. Navigation</a></li>
+<li><a href="#org64b99ed">5. Narrowing</a></li>
+<li><a href="#orgf0682ef">6. Toggle Themes</a></li>
+<li><a href="#orgc179c94">7. Multi edit</a></li>
+<li><a href="#orgb84b770">8. iedit</a></li>
+<li><a href="#org33dc551">9. Kill ring</a></li>
+<li><a href="#org29bc614">10. Magit, git</a></li>
+<li><a href="#org15217b8">11. Files</a></li>
+<li><a href="#orgae5099c">12. Treemacs</a></li>
+<li><a href="#orgda7018e">13. Ranger</a></li>
+<li><a href="#orgd0f0fdb">14. Buffers</a>
+<ul>
+<li><a href="#org037dac3">14.1. Remarks</a></li>
+</ul>
+</li>
+<li><a href="#orgc5fc4ca">15. Layout</a></li>
+<li><a href="#org8fa6112">16. Bookmarks</a></li>
+<li><a href="#org1f3b9af">17. Searching</a></li>
+<li><a href="#org5680fc1">18. Undo tree</a></li>
+<li><a href="#org90947bf">19. Spacemacs Clojure mode key bindings</a>
+<ul>
+<li><a href="#org7ba0996">19.1. Lisp state</a></li>
+</ul>
+</li>
+<li><a href="#orgff9253b">20. Snippet</a></li>
+<li><a href="#org2df327d">21. Zoom / Adjust font size</a></li>
+<li><a href="#org4a92a84">22. Org mode</a></li>
+<li><a href="#org5a8e5f1">23. Journal mode</a></li>
+<li><a href="#orgbe109be">24. EasyPG Assistant</a></li>
+<li><a href="#org8d110e0">25. Macro</a></li>
+<li><a href="#org15676cb">26. Project</a></li>
+<li><a href="#orgc73fd1c">27. Window management</a></li>
+<li><a href="#org1b5cd38">28. Toggle Emacs keybindings</a></li>
+<li><a href="#org377025e">29. Flycheck errors</a></li>
+<li><a href="#orgef72fc4">30. Flutter</a></li>
+<li><a href="#orge8ccbe0">31. Rust</a></li>
+<li><a href="#org17e1090">32. Python</a></li>
+<li><a href="#orgaaf49e6">33. JavaScript</a></li>
+<li><a href="#org18ae144">34. Graphviz</a></li>
+<li><a href="#orgdace78d">35. Add your own layer</a></li>
+</ul>
+</div>
+</div>
+<p>
+Taken from: <a href="https://inflambda.tech/post/2020-11-12-spacemacs-keybinding.html">inflambda.tech</a>
+</p>
+
+
+<div id="outline-container-org151be34" class="outline-2">
+<h2 id="org151be34"><span class="section-number-2">1.</span> Use mirrors in China</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+For users in China, use a mirror for spacemacs, this will save a lot time
+downloading packages. Locate configuration-layer-elpa-archives in
+<code>~/.spacemacs.d/init.el</code> and edit as follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">setq</span> configuration-layer-elpa-archives
+      '<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span><span style="color: #2d9574;">"melpa-cn"</span> . <span style="color: #2d9574;">"http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"</span><span style="color: #2d9574;">)</span>
+        <span style="color: #2d9574;">(</span><span style="color: #2d9574;">"org-cn"</span>   . <span style="color: #2d9574;">"http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"</span><span style="color: #2d9574;">)</span>
+        <span style="color: #2d9574;">(</span><span style="color: #2d9574;">"gnu-cn"</span>   . <span style="color: #2d9574;">"http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2b22935" class="outline-2">
+<h2 id="org2b22935"><span class="section-number-2">2.</span> Visual selection</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">v</td>
+<td class="org-left">Start visual selection, then use navigation keys to select region</td>
+</tr>
+
+<tr>
+<td class="org-left">V</td>
+<td class="org-left">Start visual selection by entire line(s)</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC v</td>
+<td class="org-left">Start visual selection starting from current word, then use v / V to widen / narrow search.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org2ef5f84" class="outline-2">
+<h2 id="org2ef5f84"><span class="section-number-2">3.</span> Editing</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org3b36dda" class="outline-3">
+<h3 id="org3b36dda"><span class="section-number-3">3.1.</span> General Editing</h3>
+<div class="outline-text-3" id="text-3-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)	Action</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">I</td>
+<td class="org-left">Edit from start of line</td>
+</tr>
+
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">Edit from end of line</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-left">Edit before current character</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">Edit after current character</td>
+</tr>
+
+<tr>
+<td class="org-left">o</td>
+<td class="org-left">Edit by starting a new line below</td>
+</tr>
+
+<tr>
+<td class="org-left">O</td>
+<td class="org-left">Edit by starting a new line above</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">w	Change current world</td>
+</tr>
+
+<tr>
+<td class="org-left">4</td>
+<td class="org-left">c w	Change 4 words starting from current word</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-left">c	Change current character</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC v c</td>
+<td class="org-left">Change current word</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC v d</td>
+<td class="org-left">Delete current word</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-left">Change till the end of current line</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">Delete till the end of current line</td>
+</tr>
+
+<tr>
+<td class="org-left">x p</td>
+<td class="org-left">Transpose current character with next</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC x t c</td>
+<td class="org-left">Transpose current character with previous</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC x t w</td>
+<td class="org-left">Transpose current word with previous</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC x t l</td>
+<td class="org-left">Transpose current line with previous</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC S c</td>
+<td class="org-left">Spell check and change current word</td>
+</tr>
+
+<tr>
+<td class="org-left">z =</td>
+<td class="org-left">Spell check and change all occurrences of current word</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC j =</td>
+<td class="org-left">Indent region or buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC { d }</td>
+<td class="org-left">Kill paragraph</td>
+</tr>
+
+<tr>
+<td class="org-left">C-R "</td>
+<td class="org-left">Paste from register in edit mode</td>
+</tr>
+
+<tr>
+<td class="org-left">M-q</td>
+<td class="org-left">Wrap line (This is hard wrap, for soft wrap use SPC t j)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org5c5ab17" class="outline-3">
+<h3 id="org5c5ab17"><span class="section-number-3">3.2.</span> Programmer Editing</h3>
+<div class="outline-text-3" id="text-3-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">d a b</td>
+<td class="org-left">Delete current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">d i b</td>
+<td class="org-left">Delete the contents of current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">c a b</td>
+<td class="org-left">Change current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">c i b</td>
+<td class="org-left">Change the contents of current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">y a b</td>
+<td class="org-left">Copy current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">y i b</td>
+<td class="org-left">Copy the contents of current s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k t</td>
+<td class="org-left">Transpose current s-expression with previous</td>
+</tr>
+
+<tr>
+<td class="org-left">g c c</td>
+<td class="org-left">Comment current line</td>
+</tr>
+
+<tr>
+<td class="org-left">M-;</td>
+<td class="org-left">Add comment to the end of line</td>
+</tr>
+
+<tr>
+<td class="org-left">%</td>
+<td class="org-left">Jump to matching brackets</td>
+</tr>
+
+<tr>
+<td class="org-left">C-k</td>
+<td class="org-left">sp-kill-hybird-sexp, kill line respecting pair delimiters. Key biding works in normal modes in some major modes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org53f119f" class="outline-2">
+<h2 id="org53f119f"><span class="section-number-2">4.</span> Navigation</h2>
+<div class="outline-text-2" id="text-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">0</td>
+<td class="org-left">Go to start of line</td>
+</tr>
+
+<tr>
+<td class="org-left">^</td>
+<td class="org-left">Go to first non-whitespace character in current line</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-left">End of world without trailing white space</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-left">End of word with trailing white space</td>
+</tr>
+
+<tr>
+<td class="org-left">f/</td>
+<td class="org-left">Go forward to the first occurrence of /</td>
+</tr>
+
+<tr>
+<td class="org-left">M</td>
+<td class="org-left">Go to middle of buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">H</td>
+<td class="org-left">Go to head of buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">C-u</td>
+<td class="org-left">Go up half a page</td>
+</tr>
+
+<tr>
+<td class="org-left">C-d</td>
+<td class="org-left">Go down half a page</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC j i</td>
+<td class="org-left">List of functions/items in current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">g d</td>
+<td class="org-left">Goto definition</td>
+</tr>
+
+<tr>
+<td class="org-left">C-o</td>
+<td class="org-left">Go back</td>
+</tr>
+
+<tr>
+<td class="org-left">C-i</td>
+<td class="org-left">Go forward (Reverse of C-o)</td>
+</tr>
+
+<tr>
+<td class="org-left">g ;</td>
+<td class="org-left">Go to position of last edit</td>
+</tr>
+
+<tr>
+<td class="org-left">m a</td>
+<td class="org-left">Add a named marker a</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">Go to mark a`</td>
+</tr>
+
+<tr>
+<td class="org-left">' a</td>
+<td class="org-left">Go to the line with mark a</td>
+</tr>
+
+<tr>
+<td class="org-left">:marks</td>
+<td class="org-left">List all marks</td>
+</tr>
+
+<tr>
+<td class="org-left">''</td>
+<td class="org-left">Go to last place</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC j j</td>
+<td class="org-left">Jump by character</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC j l</td>
+<td class="org-left">Jump by line</td>
+</tr>
+
+<tr>
+<td class="org-left">C-y</td>
+<td class="org-left">scroll down without moving cursor</td>
+</tr>
+
+<tr>
+<td class="org-left">C-e</td>
+<td class="org-left">Scroll up without moving cursor</td>
+</tr>
+
+<tr>
+<td class="org-left">z t</td>
+<td class="org-left">Put current line to top of buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">z b</td>
+<td class="org-left">Put current line to bottom of buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">z z</td>
+<td class="org-left">Put current line to center of buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">8 G</td>
+<td class="org-left">Go to line by number</td>
+</tr>
+
+<tr>
+<td class="org-left">z c</td>
+<td class="org-left">Fold current block</td>
+</tr>
+
+<tr>
+<td class="org-left">z o</td>
+<td class="org-left">Unfold/Expand current block</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC t l</td>
+<td class="org-left">Toggle line wrap, similar to soft wrap seen in other editors</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC t n v</td>
+<td class="org-left">Toggle line numbers</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org64b99ed" class="outline-2">
+<h2 id="org64b99ed"><span class="section-number-2">5.</span> Narrowing</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Narrowing is very useful to many occasions, e.g., limiting search/replace
+region, or focusing on function or block.
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC n f</td>
+<td class="org-left">Narrow to function/block</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC n r</td>
+<td class="org-left">Narrow to select region</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC n w</td>
+<td class="org-left">Widen, use this to undo narrowing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgf0682ef" class="outline-2">
+<h2 id="orgf0682ef"><span class="section-number-2">6.</span> Toggle Themes</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+You can edit themes by editing the values of dotspacemacs-themes in spacemacs
+configuration file (SPC f e d), when emacs starts it will use the first theme as
+default theme. A list of themes can be found at emacs-theme-gallery and
+Spacemacs ThemesSpacemacs Themes. My current favorite dark theme is
+cyberpunk. | |
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC T n</td>
+<td class="org-left">Switch to next theme and open themes transition state, use n/p to preview next/previous theme.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgc179c94" class="outline-2">
+<h2 id="orgc179c94"><span class="section-number-2">7.</span> Multi edit</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Evil multi-cursor (evil-mc) mode
+</p>
+
+<p>
+Use visual selection to select world(s), then use C-p or C-n to select
+occurrences above or below, then enter edit mode to edit multiple occurrences,
+or use <code>g r q</code> to quit multi-edit mode, or use <code>g r p</code> or <code>g r n</code> to exclude
+previous or next occurrence
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgb84b770" class="outline-2">
+<h2 id="orgb84b770"><span class="section-number-2">8.</span> iedit</h2>
+<div class="outline-text-2" id="text-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC s e</td>
+<td class="org-left">Edit all occurrence of the word under cursor. Spacemacs will display the number of occurrences in the status bar. Use ESC to quit.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org33dc551" class="outline-2">
+<h2 id="org33dc551"><span class="section-number-2">9.</span> Kill ring</h2>
+<div class="outline-text-2" id="text-9">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC r y</td>
+<td class="org-left">Show kill ring (helm-show-kill-ring), i.e., list of copy/paste history</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org29bc614" class="outline-2">
+<h2 id="org29bc614"><span class="section-number-2">10.</span> Magit, git</h2>
+<div class="outline-text-2" id="text-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Key(s)</td>
+<td class="org-left">Action</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC g s</td>
+<td class="org-left">Show git status</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">s</td>
+<td class="org-left">Add the highlighted file to staging</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c c</td>
+<td class="org-left">Create a commit, edit commit message. Use , , to submit commit or use , k to cancel the commit.</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">q</td>
+<td class="org-left">Close magit window</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org15217b8" class="outline-2">
+<h2 id="org15217b8"><span class="section-number-2">11.</span> Files</h2>
+<div class="outline-text-2" id="text-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC f f</td>
+<td class="org-left">Find file, use C-h to go to parent directory</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC p f</td>
+<td class="org-left">Find file in current project</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC p k</td>
+<td class="org-left">Kill project</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f e d</td>
+<td class="org-left">Open spacemacs configuration file</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f e R</td>
+<td class="org-left">Reload spacemacs configuration file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgae5099c" class="outline-2">
+<h2 id="orgae5099c"><span class="section-number-2">12.</span> Treemacs</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+<code>treemacs</code> is for viewing and navigating project files.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC f t</td>
+<td class="org-left">Open treemacs buffer. Type ? for more key bindings.</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC p t</td>
+<td class="org-left">Open project root in treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-p d</td>
+<td class="org-left">Remove a project from treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC 0</td>
+<td class="org-left">If in file buffer, switch to treemacs buffer</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgda7018e" class="outline-2">
+<h2 id="orgda7018e"><span class="section-number-2">13.</span> Ranger</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+<code>ranger</code> is a file manager in emacs.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC a t r r</td>
+<td class="org-left">Open ranger buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">h</td>
+<td class="org-left">Go to parent directory</td>
+</tr>
+
+<tr>
+<td class="org-left">l</td>
+<td class="org-left">Jump to selected item</td>
+</tr>
+
+<tr>
+<td class="org-left">y y</td>
+<td class="org-left">Copy file</td>
+</tr>
+
+<tr>
+<td class="org-left">p p</td>
+<td class="org-left">Paste file</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-left">Search by file name</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgd0f0fdb" class="outline-2">
+<h2 id="orgd0f0fdb"><span class="section-number-2">14.</span> Buffers</h2>
+<div class="outline-text-2" id="text-14">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC b b</td>
+<td class="org-left">List buffers for current layout. (See the remarks below.)</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b B</td>
+<td class="org-left">List buffers for all layouts. (See the remarks below.)</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b .</td>
+<td class="org-left">Start buffer transition state. You can then use n, p etc to switch to other buffers b.</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC TAB</td>
+<td class="org-left">Toggle buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b d</td>
+<td class="org-left">Kill this buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b n</td>
+<td class="org-left">Go to next buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b p</td>
+<td class="org-left">Go to previous buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b s</td>
+<td class="org-left">Go to scratch buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b Y</td>
+<td class="org-left">Copy current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f c</td>
+<td class="org-left">Save current buffer as a new file</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b w</td>
+<td class="org-left">Toggle buffer as read-only</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f s</td>
+<td class="org-left">Save current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f S</td>
+<td class="org-left">Save all buffers</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f R</td>
+<td class="org-left">Change file name of current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC f y</td>
+<td class="org-left">n	Copy file name of current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b u</td>
+<td class="org-left">Reopen last killed buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC b C-d</td>
+<td class="org-left">Kill other buffers</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org037dac3" class="outline-3">
+<h3 id="org037dac3"><span class="section-number-3">14.1.</span> Remarks</h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+Use M-SPC to enter helm transition state, then you can mark buffer(s) use t and
+kill the marked buffer(s) with M-D.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc5fc4ca" class="outline-2">
+<h2 id="orgc5fc4ca"><span class="section-number-2">15.</span> Layout</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+Layout is also known as perspective in spacemacs, a layout contains a list of
+buffers. When spaceemacs is started, the default layout is Global
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC l l</td>
+<td class="org-left">List all layouts</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC l s</td>
+<td class="org-left">Save current layout to a file</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC l L</td>
+<td class="org-left">Load layout from file</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC l x</td>
+<td class="org-left">Kill current layout with all buffers</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org8fa6112" class="outline-2">
+<h2 id="org8fa6112"><span class="section-number-2">16.</span> Bookmarks</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+It's an easy way to pause and resume editing a file. The bookmark- feature is
+like a light version of layout.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Command	Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-x r m	bookmark-set</td>
+<td class="org-left">Create a named bookmark</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x r b	bookmark-jump</td>
+<td class="org-left">Open a saved bookmark</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org1f3b9af" class="outline-2">
+<h2 id="org1f3b9af"><span class="section-number-2">17.</span> Searching</h2>
+<div class="outline-text-2" id="text-17">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC s s</td>
+<td class="org-left">Search with helm-swoop in current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC s S</td>
+<td class="org-left">Search with helm-swoop in current buffer for current word</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC s p</td>
+<td class="org-left">Search with helm-swoop in current project</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC r l</td>
+<td class="org-left">Resume last search (helm-resume)</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC s l</td>
+<td class="org-left">Repeat last search (for project search only)</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC p %</td>
+<td class="org-left">Regex replace in all file in project, type ? for help</td>
+</tr>
+
+<tr>
+<td class="org-left">*</td>
+<td class="org-left">Search forward for the word under cursor. Use n or p to go to next or previous match. You can also start iedit from here.</td>
+</tr>
+
+<tr>
+<td class="org-left">#</td>
+<td class="org-left">Search backward for the word under cursor. Use n or p to go to next or previous match. You can also start iedit from here.</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC s c</td>
+<td class="org-left">Clear search highlights</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+If you have ripgrep installed, you can use ripgrep arguments as the search
+pattern. Example patterns for search the term bql in different files:
+</p>
+
+<p>
+Search only in Java files:
+</p>
+
+<p>
+-g*.java bql
+//  Or use `-t` flag:
+-tjava bql
+</p>
+
+
+<p>
+Search in any files except Java files:
+</p>
+
+<p>
+-g!*.java bql
+</p>
+
+<p>
+Show 2 lines above and below the occurrence, this works in project search only:
+</p>
+
+<p>
+-C2 bql
+</p>
+
+<p>
+Search and replace
+</p>
+
+<p>
+After doing search and helm buffered displayed, press C-c C-e, you can then edit
+the results in a new buffer as if it's a new file, e.g., you can use SPC s e to
+replace all occurrences.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org5680fc1" class="outline-2">
+<h2 id="org5680fc1"><span class="section-number-2">18.</span> Undo tree</h2>
+<div class="outline-text-2" id="text-18">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC a u</td>
+<td class="org-left">Show undo tree. Use j, k, h, l to select from the edit history.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org90947bf" class="outline-2">
+<h2 id="org90947bf"><span class="section-number-2">19.</span> Spacemacs Clojure mode key bindings</h2>
+<div class="outline-text-2" id="text-19">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">, '</td>
+<td class="org-left">Run Clojure REPL (sesman-start)</td>
+</tr>
+
+<tr>
+<td class="org-left">, e f</td>
+<td class="org-left">Evaluate current s-expression and show result</td>
+</tr>
+
+<tr>
+<td class="org-left">, s f</td>
+<td class="org-left">Send current s-expression to REPL and evaluate</td>
+</tr>
+
+<tr>
+<td class="org-left">, e v</td>
+<td class="org-left">Evaluate expression before point (cider-eval-sexp-at-point)</td>
+</tr>
+
+<tr>
+<td class="org-left">, e l</td>
+<td class="org-left">Evaluate expression at current line</td>
+</tr>
+
+<tr>
+<td class="org-left">, s b</td>
+<td class="org-left">Reload current buffer (cider-load-buffer)</td>
+</tr>
+
+<tr>
+<td class="org-left">, e b</td>
+<td class="org-left">Evaluate current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">, s a</td>
+<td class="org-left">Toggle between REPL and Clojure source code</td>
+</tr>
+
+<tr>
+<td class="org-left">, s n</td>
+<td class="org-left">Change REPL namespace to current buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">, s l</td>
+<td class="org-left">Clear REPL</td>
+</tr>
+
+<tr>
+<td class="org-left">, m q</td>
+<td class="org-left">q	Quit REPL</td>
+</tr>
+
+<tr>
+<td class="org-left">, m q r</td>
+<td class="org-left">Restart REPL (sesman-restart)</td>
+</tr>
+
+<tr>
+<td class="org-left">, h h</td>
+<td class="org-left">Show doc</td>
+</tr>
+
+<tr>
+<td class="org-left">, e ;</td>
+<td class="org-left">Evaluate current s-expression and print result as comment in a new line</td>
+</tr>
+
+<tr>
+<td class="org-left">, e w</td>
+<td class="org-left">Evaluate last s-expression and replace the expression with the result</td>
+</tr>
+
+<tr>
+<td class="org-left">, e p f</td>
+<td class="org-left">Evaluate current s-expression and pretty-print result in a new buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">, e b</td>
+<td class="org-left">Evaluate all code in buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">, t a</td>
+<td class="org-left">Run all tests</td>
+</tr>
+
+<tr>
+<td class="org-left">, m b</td>
+<td class="org-left">Browse active REPLs (sesman-browse)</td>
+</tr>
+
+<tr>
+<td class="org-left">, e e</td>
+<td class="org-left">Evaluate expression before cursor</td>
+</tr>
+
+<tr>
+<td class="org-left">, e w</td>
+<td class="org-left">Evaluate expression and replace by the results</td>
+</tr>
+
+<tr>
+<td class="org-left">, e m</td>
+<td class="org-left">Macro-expand for immediate macro</td>
+</tr>
+
+<tr>
+<td class="org-left">, e M</td>
+<td class="org-left">Macro-expand for all nested macros</td>
+</tr>
+
+<tr>
+<td class="org-left">, T e</td>
+<td class="org-left">Toggle enlighten mode with cider inspector</td>
+</tr>
+
+<tr>
+<td class="org-left">, d v</td>
+<td class="org-left">Inspect current symbol</td>
+</tr>
+
+<tr>
+<td class="org-left">, h a</td>
+<td class="org-left">cider-apropos, show list of Clojure symbols</td>
+</tr>
+
+<tr>
+<td class="org-left">, g r</td>
+<td class="org-left">Find reference to the symbol under cursor</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+Use SPC v followed by v or V to expand or shrink expression selection.
+</p>
+
+<p>
+When in Clojure REPL buffer, the following keybinding are available:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-j</td>
+<td class="org-left">Cycle up through history</td>
+</tr>
+
+<tr>
+<td class="org-left">C-k</td>
+<td class="org-left">Cycle down through history</td>
+</tr>
+
+<tr>
+<td class="org-left">,</td>
+<td class="org-left">Open mini buffer showing cider commands. For instance, you can use clear command to clear REPL buffer.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org7ba0996" class="outline-3">
+<h3 id="org7ba0996"><span class="section-number-3">19.1.</span> Lisp state</h3>
+<div class="outline-text-3" id="text-19-1">
+<p>
+Lisp State is for easy navigating and editing s-expressions in Clojure mode. | |
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC k .</td>
+<td class="org-left">Toggle list-state. When lisp-state is on, the status mode indicator is shown as L.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Key bindings in lisp state:
+</p>
+
+<p>
+For a complete list of key bindings, see lisp-state
+</p>
+
+<p>
+Lisp state uses a different set of keybindings, to switch back to normal state,
+press the ESC key.
+</p>
+
+<p>
+After calling a Lisp state function, the buffer enters Lisp state, lisp state
+functions can be triggered without the SPC k prefix.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC k .</td>
+<td class="org-left">Start lisp state</td>
+</tr>
+
+<tr>
+<td class="org-left">L</td>
+<td class="org-left">Next expression</td>
+</tr>
+
+<tr>
+<td class="org-left">H</td>
+<td class="org-left">Previous expression</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k w</td>
+<td class="org-left">Wrap expression with parenthesis</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k W</td>
+<td class="org-left">Unwrap expression</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k y</td>
+<td class="org-left">Copy expression</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k y</td>
+<td class="org-left">Copy expression</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k s</td>
+<td class="org-left">Forward slurp expression (move inside the expression after the current s-expression )</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC k d</td>
+<td class="org-left">x	Delete s-expression</td>
+</tr>
+
+<tr>
+<td class="org-left">M-t</td>
+<td class="org-left">Transpose current s-expression with previous</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgff9253b" class="outline-2">
+<h2 id="orgff9253b"><span class="section-number-2">20.</span> Snippet</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+To use an existing snippets,
+</p>
+
+<p>
+Type the keyword defined in the snippet
+</p>
+
+<p>
+Use <code>M-/</code> to expand with snippet
+Use <code>TAB</code> to jump to other makers in the snippet
+</p>
+
+<p>
+Sinppets are saved in <code>~/.spacemacs.d/snippets/</code> or
+<code>~/.emacs.d/private/snippets/</code> directories.
+</p>
+
+<p>
+List of snippets can be found with the <code>yas-visit-snippet-file</code> command.
+</p>
+
+<p>
+Every snippet is a single file under a directory named with its target major
+mode.
+</p>
+
+<p>
+A example snippet at <code>~/.spacemacs.d/snippets/org-mode/journal-entry</code> is shown
+below, you type journal-entry to trigger the snippet and everything below # &#x2013;
+will be inserted in place for you.
+</p>
+
+<p>
+Note: $0 indicates the end cursor position, while $1, $2 etc indicates the
+initial and second positions.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-text"># -*- mode: snippet -*-
+#name : journal-entry
+#key : journal-entry
+#contributor : jr0cket
+# --
+* 201912$1
+** Thoughts for today
+$0
+** Code commits
+*** .
+** Activities in detail
+*** .
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2df327d" class="outline-2">
+<h2 id="org2df327d"><span class="section-number-2">21.</span> Zoom / Adjust font size</h2>
+<div class="outline-text-2" id="text-21">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC z f</td>
+<td class="org-left">Show mini buffer to adjust font size</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org4a92a84" class="outline-2">
+<h2 id="org4a92a84"><span class="section-number-2">22.</span> Org mode</h2>
+<div class="outline-text-2" id="text-22">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC a o o n</td>
+<td class="org-left">List all agenda and todos</td>
+</tr>
+
+<tr>
+<td class="org-left">g r</td>
+<td class="org-left">In org-agenda buffer, refresh agenda</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c [</td>
+<td class="org-left">org-agenda-file-to-front, add this file to agenda list</td>
+</tr>
+
+<tr>
+<td class="org-left">t</td>
+<td class="org-left">Toggle ToDo state selector</td>
+</tr>
+
+<tr>
+<td class="org-left">, b d</td>
+<td class="org-left">Create a code block</td>
+</tr>
+
+<tr>
+<td class="org-left">, d d</td>
+<td class="org-left">Create deadline for the current task</td>
+</tr>
+
+<tr>
+<td class="org-left">, d s</td>
+<td class="org-left">Schedule the start date for the current task</td>
+</tr>
+
+<tr>
+<td class="org-left">, i b</td>
+<td class="org-left">Create a template block, it's more general than , b d</td>
+</tr>
+
+<tr>
+<td class="org-left">, T c</td>
+<td class="org-left">Toggle check box (a check box is simply a pair of brackets: [ ])</td>
+</tr>
+
+<tr>
+<td class="org-left">M-Left</td>
+<td class="org-left">Promote headings</td>
+</tr>
+
+<tr>
+<td class="org-left">M-Right</td>
+<td class="org-left">Demote headings</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-Left</td>
+<td class="org-left">Promote headings with all its sub-items</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-Right</td>
+<td class="org-left">Demote headings with all its sub-items</td>
+</tr>
+
+<tr>
+<td class="org-left">, i l</td>
+<td class="org-left">Insert a link</td>
+</tr>
+
+<tr>
+<td class="org-left">, i L</td>
+<td class="org-left">Insert a link, auto extract link title from the link</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC a o l</td>
+<td class="org-left">Store a link target (org-store-link), use , i l to insert the link</td>
+</tr>
+
+<tr>
+<td class="org-left">, d d</td>
+<td class="org-left">Add deadline/schedule a task</td>
+</tr>
+
+<tr>
+<td class="org-left">, s A</td>
+<td class="org-left">org-archive-subtree, move current node to the archive file</td>
+</tr>
+
+<tr>
+<td class="org-left">, C p</td>
+<td class="org-left">org-pomodoro</td>
+</tr>
+
+<tr>
+<td class="org-left">, s S</td>
+<td class="org-left">Sort subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">, s n</td>
+<td class="org-left">Narrow to subtree, use this to narrow buffer to current org subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">, s w</td>
+<td class="org-left">Widen, this is the opposite of <code>, s n</code></td>
+</tr>
+
+<tr>
+<td class="org-left">C-c @</td>
+<td class="org-left">org-mark-subtree, select subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-c</td>
+<td class="org-left">org-columns view, press q to quit column view</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC a o C i</td>
+<td class="org-left">org-clock-in</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC a o C o</td>
+<td class="org-left">org-clock-out</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC a o C g</td>
+<td class="org-left">org-clock-goto, goto the active task</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>
+If you have source code in an org file, it can be slow to open this file caused
+by source code evaluation. Disable code eval by adding this header
+argument: #+PROPERTY: header-args :eval no. See source.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org5a8e5f1" class="outline-2">
+<h2 id="org5a8e5f1"><span class="section-number-2">23.</span> Journal mode</h2>
+<div class="outline-text-2" id="text-23">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC a o j j</td>
+<td class="org-left">Create a new journal for current day</td>
+</tr>
+
+<tr>
+<td class="org-left">, p</td>
+<td class="org-left">Previous journal</td>
+</tr>
+
+<tr>
+<td class="org-left">, n</td>
+<td class="org-left">Next journal</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgbe109be" class="outline-2">
+<h2 id="orgbe109be"><span class="section-number-2">24.</span> EasyPG Assistant</h2>
+<div class="outline-text-2" id="text-24">
+<p>
+You can encrypt or decrypt files with epa- commands, some are listed below.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Command</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">epa-list-key</td>
+<td class="org-left">List all GPG keys</td>
+</tr>
+
+<tr>
+<td class="org-left">epa-encrypt-file</td>
+<td class="org-left">Encrypt a file with GPG key. Use symmetric encryption if no key is selected.</td>
+</tr>
+
+<tr>
+<td class="org-left">epa-decrypt-file</td>
+<td class="org-left">Decrypt a file. Emacs will cache password so you may not be asked to enter password for the file encrypted a short time ago.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org8d110e0" class="outline-2">
+<h2 id="org8d110e0"><span class="section-number-2">25.</span> Macro</h2>
+<div class="outline-text-2" id="text-25">
+<p>
+Macro in emacs means a sequence of actions usually edits. You can use macro to
+simplify repetitive tasks.
+</p>
+
+<p>
+To define and use a macro:
+</p>
+
+<p>
+Press <code>q q</code> to start macro definition, all actions afterwards will be recorded.
+</p>
+
+<p>
+Perform the editing actions you'd like to record.
+</p>
+
+<p>
+Press <code>q</code> to complete the macro definition.
+</p>
+
+<p>
+Press <code>C-x e</code> to execute this macro.
+</p>
+
+<p>
+Press <code>e</code> to repeat this macro.
+</p>
+
+<p>
+Press <code>ESC</code> to quit macro execution.
+</p>
+
+<p>
+If you'd like to execute this macro multiple times, you can always use the
+number prefix trick. For example pressing <code>5 C-x e</code> will execute the macro 5
+times.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org15676cb" class="outline-2">
+<h2 id="org15676cb"><span class="section-number-2">26.</span> Project</h2>
+<div class="outline-text-2" id="text-26">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC p t</td>
+<td class="org-left">Show project tree. Press the enter key to open the file. SPC 0 to go back to project tree. Press q to quit project tree</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC p a</td>
+<td class="org-left">Toggle between source code and test file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgc73fd1c" class="outline-2">
+<h2 id="orgc73fd1c"><span class="section-number-2">27.</span> Window management</h2>
+<div class="outline-text-2" id="text-27">
+<p>
+The emacs window can be split in to multiple windows.
+</p>
+
+<p>
+Press <code>SPC w</code> and some common window-related commands will be displayed in the
+mini-buffer.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC w .</td>
+<td class="org-left">Enter window-transition-state, where you can select/move/resize windows</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w d</td>
+<td class="org-left">Delete current window</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w /</td>
+<td class="org-left">Split window horizontally</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w V</td>
+<td class="org-left">Split window horizontally and focus the new window</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w [</td>
+<td class="org-left">Resize current window</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w s</td>
+<td class="org-left">Split window vertically</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC w S</td>
+<td class="org-left">Split window vertically and focus the new window</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC t g</td>
+<td class="org-left">Toggle window size golden ratio</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org1b5cd38" class="outline-2">
+<h2 id="org1b5cd38"><span class="section-number-2">28.</span> Toggle Emacs keybindings</h2>
+<div class="outline-text-2" id="text-28">
+<p>
+You can use <code>C-z</code> to toggle between the default Evil mode and Emacs mode.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org377025e" class="outline-2">
+<h2 id="org377025e"><span class="section-number-2">29.</span> Flycheck errors</h2>
+<div class="outline-text-2" id="text-29">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">SPC e n</td>
+<td class="org-left">Go to next error</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC e p</td>
+<td class="org-left">Go to previous error</td>
+</tr>
+
+<tr>
+<td class="org-left">SPC e L</td>
+<td class="org-left">Go to flycheck error list</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgef72fc4" class="outline-2">
+<h2 id="orgef72fc4"><span class="section-number-2">30.</span> Flutter</h2>
+<div class="outline-text-2" id="text-30">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">, x x</td>
+<td class="org-left">Flutter run or hot reload</td>
+</tr>
+
+<tr>
+<td class="org-left">, g r</td>
+<td class="org-left">Find references</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orge8ccbe0" class="outline-2">
+<h2 id="orge8ccbe0"><span class="section-number-2">31.</span> Rust</h2>
+<div class="outline-text-2" id="text-31">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">, q</td>
+<td class="org-left">rust-quick-run</td>
+</tr>
+
+<tr>
+<td class="org-left">, = =</td>
+<td class="org-left">rust-format-buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org17e1090" class="outline-2">
+<h2 id="org17e1090"><span class="section-number-2">32.</span> Python</h2>
+<div class="outline-text-2" id="text-32">
+<p>
+Install necessary dependencies:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pip install python-language-server
+pip install importmagic epc
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgaaf49e6" class="outline-2">
+<h2 id="orgaaf49e6"><span class="section-number-2">33.</span> JavaScript</h2>
+<div class="outline-text-2" id="text-33">
+<p>
+To disable warnings of missing trailing semicolon in JavaScript mode, add this
+to spacemacs config (SPC f e d):
+</p>
+
+<p>
+(setq js2-strict-missing-semi-warning nil)
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org18ae144" class="outline-2">
+<h2 id="org18ae144"><span class="section-number-2">34.</span> Graphviz</h2>
+<div class="outline-text-2" id="text-34">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key(s)</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">, ,</td>
+<td class="org-left">prview in emacs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgdace78d" class="outline-2">
+<h2 id="orgdace78d"><span class="section-number-2">35.</span> Add your own layer</h2>
+<div class="outline-text-2" id="text-35">
+<p>
+To create a new layer, press SPC SPC and select
+configuration-layer/create-layer, a template layer will be auto generated.
+</p>
+
+<p>
+Refer to configuring-spacemacs-a-tutorial for more details.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Muhammad Ridho</p>
+<p class="date">Created: 2022-03-29 Tue 16:45</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
