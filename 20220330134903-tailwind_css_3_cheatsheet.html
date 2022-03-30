@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-03-30 Wed 17:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tailwind CSS 3 cheatsheet</title>
+<meta name="author" content="Muhammad Ridho" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Tailwind CSS 3 cheatsheet</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org929f69d">1. Colors</a></li>
+<li><a href="#orge826a3f">2. Modifiers</a>
+<ul>
+<li><a href="#orgd167d2a">2.1. Pseudo Classes</a></li>
+<li><a href="#org71951e7">2.2. Media Queries</a></li>
+<li><a href="#org361efbc">2.3. Attribute Selectors</a></li>
+</ul>
+</li>
+<li><a href="#orgd24f3ca">3. Functions and Directives</a></li>
+<li><a href="#org0964a17">4. Utility Classess</a>
+<ul>
+<li><a href="#org664e2fc">4.1. Layout</a></li>
+<li><a href="#orgc54ed77">4.2. Flexbox &amp; Grid</a></li>
+<li><a href="#orgefb14b4">4.3. Spacing</a></li>
+<li><a href="#orgf40702a">4.4. Sizing</a></li>
+<li><a href="#org6aa7d75">4.5. Typography</a></li>
+<li><a href="#org56f6421">4.6. Background</a></li>
+<li><a href="#org928f0ba">4.7. Borders</a></li>
+<li><a href="#org66f255d">4.8. Effects</a></li>
+<li><a href="#org8845f8c">4.9. Filters</a></li>
+<li><a href="#org356a990">4.10. Tables</a></li>
+<li><a href="#org8b5e3aa">4.11. Transitions &amp; Animation</a></li>
+<li><a href="#orgdbe7c93">4.12. Transforms</a></li>
+<li><a href="#org89c0657">4.13. Interactivity</a></li>
+<li><a href="#org3d146bf">4.14. SVG</a></li>
+<li><a href="#org5e4e39a">4.15. Accessibility</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org929f69d" class="outline-2">
+<h2 id="org929f69d"><span class="section-number-2">1.</span> Colors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Slate, Gray, Zinc, Netural, Stone, Red, Orange, Amber, Yellow, lime Green,
+Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, Fuschia Ping, Rose.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge826a3f" class="outline-2">
+<h2 id="orge826a3f"><span class="section-number-2">2.</span> Modifiers</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd167d2a" class="outline-3">
+<h3 id="orgd167d2a"><span class="section-number-3">2.1.</span> Pseudo Classes</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+hover, focus, focus-within, focus-visible, active, visited, target, first, last,
+only, odd, even, first-of-type, last-of-type, only-of-type, empty, disabled,
+checked, indeterminate, default, required, valid, invalid, in-range,
+out-of-range, placeholder-shown, autofill, read-only.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71951e7" class="outline-3">
+<h3 id="org71951e7"><span class="section-number-3">2.2.</span> Media Queries</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+sm, md, lg, xl, 2xl, dark, motion-reduce, motion-safe, portrait, landscape,
+print.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org361efbc" class="outline-3">
+<h3 id="org361efbc"><span class="section-number-3">2.3.</span> Attribute Selectors</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+rtl, ltr, open.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd24f3ca" class="outline-2">
+<h2 id="orgd24f3ca"><span class="section-number-2">3.</span> Functions and Directives</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+theme(), screen(), @tailwind, @layer, @apply.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org0964a17" class="outline-2">
+<h2 id="org0964a17"><span class="section-number-2">4.</span> Utility Classess</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org664e2fc" class="outline-3">
+<h3 id="org664e2fc"><span class="section-number-3">4.1.</span> Layout</h3>
+<div class="outline-text-3" id="text-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Aspec Ratio</td>
+<td class="org-left">aspect-auto, aspect-square, aspect-video</td>
+</tr>
+
+<tr>
+<td class="org-left">Container</td>
+<td class="org-left">container</td>
+</tr>
+
+<tr>
+<td class="org-left">Columns</td>
+<td class="org-left">columns-{1-12, auto, 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl}}, gap-{0-16}, gap-{20-96/4}, gap-x-{0-16}, gap-x-{20-96/4}, gap-y-{0-16}, gap-y-{20-96/4}</td>
+</tr>
+
+<tr>
+<td class="org-left">Break</td>
+<td class="org-left">break-after-{auto, avoid, all, avoid-page, page, left, right, column}, break-before-{auto, avoid, all, avoid-page, page, left, right, column}, break-inside-{auto, avoid, avoid-page, avoid-column}</td>
+</tr>
+
+<tr>
+<td class="org-left">Box Sizing</td>
+<td class="org-left">box-decoration-{clone, slice}, box-{border, content}</td>
+</tr>
+
+<tr>
+<td class="org-left">Display</td>
+<td class="org-left">block, inline-block, inline, flex, inline-flex, table, inline-table, table-{caption, cell, column, column-group, footer-group, header-group, row-group, row}, flow-root, grid, inline-grid, contents, list-item, hidden</td>
+</tr>
+
+<tr>
+<td class="org-left">Floats</td>
+<td class="org-left">float-{right, left, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Clears</td>
+<td class="org-left">clear-{left, right, both, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Isolation</td>
+<td class="org-left">isolate, isolation-auto</td>
+</tr>
+
+<tr>
+<td class="org-left">Object Fit</td>
+<td class="org-left">object-{contain, cover, fill, none, scale-down}</td>
+</tr>
+
+<tr>
+<td class="org-left">Object Position</td>
+<td class="org-left">object-{bottom, center, left, left-bottom, left-top, right, right-bottom, right-top, top}</td>
+</tr>
+
+<tr>
+<td class="org-left">Overflow</td>
+<td class="org-left">overflow-{auto, hidden, clip, visible, scroll, x-auto, y-auto, x-hidden, y-hidden, x-clip, y-clip, x-visible, y-visible, x-scroll, y-scroll}</td>
+</tr>
+
+<tr>
+<td class="org-left">Overscroll Behavior</td>
+<td class="org-left">overscroll-{auto, contain, none, y-{auto, contain, none}, x-{auto, contain, none}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Position</td>
+<td class="org-left">static, fixed, absolute, relative, sticky</td>
+</tr>
+
+<tr>
+<td class="org-left">Top/Right/Bottom/Left</td>
+<td class="org-left">inset-0, inset-{x, y}-0, {top, right, bottom, left}-0, inset-{x, y}-px, {top, right, bottom, left}-px, inset-{x, y}-{0.5, 1, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 8, 10, 11, 12, &#x2026;}, {top, right, bottom, left}-{0,5, 1, 2, &#x2026;}, &#x2026;{auto, 1/2, 1/3, 2/3, 1/4, 2/4, 3/4, full, auto}</td>
+</tr>
+
+<tr>
+<td class="org-left">Visibility</td>
+<td class="org-left">visible, invisible</td>
+</tr>
+
+<tr>
+<td class="org-left">Z-Index</td>
+<td class="org-left">z-{0, 10, 20, 30, 40, 50, auto}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgc54ed77" class="outline-3">
+<h3 id="orgc54ed77"><span class="section-number-3">4.2.</span> Flexbox &amp; Grid</h3>
+<div class="outline-text-3" id="text-4-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Flex Basis</td>
+<td class="org-left">basis-{full, auto, px, 0, 0.5, 1, 2, &#x2026;, 1/2, 1/3, &#x2026; 11/12}</td>
+</tr>
+
+<tr>
+<td class="org-left">Flex Direction</td>
+<td class="org-left">flex-{row, col}-{, reverse}</td>
+</tr>
+
+<tr>
+<td class="org-left">Flex Wrap</td>
+<td class="org-left">flex-{wrap, wrap-reverse, nowrap}</td>
+</tr>
+
+<tr>
+<td class="org-left">Flex</td>
+<td class="org-left">flex-{1, auto, initial, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Flex Grow</td>
+<td class="org-left">grow-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Flex Shrink</td>
+<td class="org-left">shrink-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Order</td>
+<td class="org-left">order-{1-12, first, last, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Template Columns</td>
+<td class="org-left">grid-cols-{1-12, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Column Start/End</td>
+<td class="org-left">col-{auto, {span, start, end}-{1-12, full}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Template Rows</td>
+<td class="org-left">grid-rows-{1-6, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Row Start/End</td>
+<td class="org-left">row-{auto, {span, start, end}-{1-6, 7, full, auto}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Auto Flow</td>
+<td class="org-left">grid-flow-{row, col, row-dense, col-dense}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Auto Columns</td>
+<td class="org-left">auto-cols-{auto, min, max, fr}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grid Auto Rows</td>
+<td class="org-left">auto-rows-{auto, min, max, fr}</td>
+</tr>
+
+<tr>
+<td class="org-left">Gap</td>
+<td class="org-left">gap-{, x, y}-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Justify Content</td>
+<td class="org-left">justify-{start, end, center, between, around, evenly}</td>
+</tr>
+
+<tr>
+<td class="org-left">Justify Items</td>
+<td class="org-left">justify-items-{start, end, center, stretch}</td>
+</tr>
+
+<tr>
+<td class="org-left">Justify Self</td>
+<td class="org-left">justify-self-{auto, start, end, center, stretch}</td>
+</tr>
+
+<tr>
+<td class="org-left">Align Content</td>
+<td class="org-left">content-{center, start, end, between, around, evenly}</td>
+</tr>
+
+<tr>
+<td class="org-left">Align Items</td>
+<td class="org-left">items-{start, end, center, baseline, stretch}</td>
+</tr>
+
+<tr>
+<td class="org-left">Align Self</td>
+<td class="org-left">self-{auto, start, end, center, stretch, baseline}</td>
+</tr>
+
+<tr>
+<td class="org-left">Place Content</td>
+<td class="org-left">place-content-{center, start, end, between, around, evenly, stretch}</td>
+</tr>
+
+<tr>
+<td class="org-left">Place Items</td>
+<td class="org-left">place-items-{start, end, center, stretch}</td>
+</tr>
+
+<tr>
+<td class="org-left">Place Self</td>
+<td class="org-left">place-selft-{auto, start, end, center, stretch}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgefb14b4" class="outline-3">
+<h3 id="orgefb14b4"><span class="section-number-3">4.3.</span> Spacing</h3>
+<div class="outline-text-3" id="text-4-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Padding</td>
+<td class="org-left">p-{, x, y, t, r, b, l}-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Margin</td>
+<td class="org-left">m-{, x, y, t, r, b, l}-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Space Between</td>
+<td class="org-left">space-{x, y}-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgf40702a" class="outline-3">
+<h3 id="orgf40702a"><span class="section-number-3">4.4.</span> Sizing</h3>
+<div class="outline-text-3" id="text-4-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Width</td>
+<td class="org-left">w-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Min-Width</td>
+<td class="org-left">min-w-{0, full, min, max, fit}</td>
+</tr>
+
+<tr>
+<td class="org-left">Max-Width</td>
+<td class="org-left">max-w-{0, none, xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, full, min, max, fit, prose, screen-sm, screen-md}</td>
+</tr>
+
+<tr>
+<td class="org-left">Height</td>
+<td class="org-left">h-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Min-Height</td>
+<td class="org-left">min-h-{0, full, screen, min, max, fit}</td>
+</tr>
+
+<tr>
+<td class="org-left">Max-Height</td>
+<td class="org-left">max-h-{0, px, 0.5, 1, 1.5, 2, &#x2026;, full, screen, min, max, fit}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org6aa7d75" class="outline-3">
+<h3 id="org6aa7d75"><span class="section-number-3">4.5.</span> Typography</h3>
+<div class="outline-text-3" id="text-4-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Font Family</td>
+<td class="org-left">font-{sans, serif, mono}</td>
+</tr>
+
+<tr>
+<td class="org-left">Font Size</td>
+<td class="org-left">text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, 8xl, 9xl}</td>
+</tr>
+
+<tr>
+<td class="org-left">Font Smoothing</td>
+<td class="org-left">antialiased, subpixel-antialiased</td>
+</tr>
+
+<tr>
+<td class="org-left">Font Style</td>
+<td class="org-left">italic, not-italic</td>
+</tr>
+
+<tr>
+<td class="org-left">Font Weight</td>
+<td class="org-left">font-{thin, extralight, light, normal, medium, semibold, bold, extrabold, black</td>
+</tr>
+
+<tr>
+<td class="org-left">Font Variant Numeric</td>
+<td class="org-left">normal-nums, ordinal, slashed-zero, {lining, oldstyle, proportional, tabular}-nums, {diagonal, stacked}-fractions</td>
+</tr>
+
+<tr>
+<td class="org-left">Letter Spacing</td>
+<td class="org-left">tracking-{tighter, tight, normal, wide, wider, widest}</td>
+</tr>
+
+<tr>
+<td class="org-left">Line Height</td>
+<td class="org-left">leading-{3-10, none, tight, snug, normal, relaxed, loose}</td>
+</tr>
+
+<tr>
+<td class="org-left">List Style Type</td>
+<td class="org-left">list-{none, disc, decimal}</td>
+</tr>
+
+<tr>
+<td class="org-left">List Style Position</td>
+<td class="org-left">list-{inside, outside}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Align</td>
+<td class="org-left">text-{left, center, right, justify}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Color</td>
+<td class="org-left">text-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Decoration</td>
+<td class="org-left">underline, overline, line-throug, no-underline</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Decoration Color</td>
+<td class="org-left">decoration-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Decoration Style</td>
+<td class="org-left">decoration-{solid, double, dotted, dashed, wavy}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Decoration Thinkness</td>
+<td class="org-left">docoration-{auto, from-font, 0, 1, 2, 4, 8}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Underline Offset</td>
+<td class="org-left">underline-offset-{auto, 0, 1, 2, 4, 8}</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Transforms</td>
+<td class="org-left">uppercase, lowercase, capitalize, normal-case</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Overflow</td>
+<td class="org-left">truncate, text-ellipsis, text-clip</td>
+</tr>
+
+<tr>
+<td class="org-left">Text Indent</td>
+<td class="org-left">indent-{0, px, 0.5, 1, 1.5, 2, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Vertical Align</td>
+<td class="org-left">align-{baseline, top, middle, bottom, text-top, text-bottom, sub, super}</td>
+</tr>
+
+<tr>
+<td class="org-left">Whitespace</td>
+<td class="org-left">whitespace-{normal, nowrap, pre, pre-line, pre-wrap}</td>
+</tr>
+
+<tr>
+<td class="org-left">Word Break</td>
+<td class="org-left">break-{normal, words, all}</td>
+</tr>
+
+<tr>
+<td class="org-left">Content</td>
+<td class="org-left">content-none</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org56f6421" class="outline-3">
+<h3 id="org56f6421"><span class="section-number-3">4.6.</span> Background</h3>
+<div class="outline-text-3" id="text-4-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Background Attachment</td>
+<td class="org-left">bg-{fixed, local, scroll}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Clip</td>
+<td class="org-left">bg-clip-{border, padding, content, text}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Color</td>
+<td class="org-left">bg-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Origin</td>
+<td class="org-left">bg-origin-{border, padding, content}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Position</td>
+<td class="org-left">bg-{center, top, bottom, left, bottom-right, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Repeat</td>
+<td class="org-left">bg-repeat-{, x, y, round, space}, bg-no-repeat</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Size</td>
+<td class="org-left">bg-{auto, cover, contain}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Image</td>
+<td class="org-left">bg-none, bg-gradient-to-{t, tr, r, br, b, bl, l, tl}</td>
+</tr>
+
+<tr>
+<td class="org-left">Gradient Color Stops</td>
+<td class="org-left">from-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org928f0ba" class="outline-3">
+<h3 id="org928f0ba"><span class="section-number-3">4.7.</span> Borders</h3>
+<div class="outline-text-3" id="text-4-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Border Radius</td>
+<td class="org-left">rounded-{, none, sm, md, lg, xl, 2xl, 3xl, full, {t, r, b, l}-{, sm, md, &#x2026;}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Border Width</td>
+<td class="org-left">border-{, 0, 2, 4, 8, {x, y, t, r, b, l}-{, 0, 2, 4, 8}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Border Color</td>
+<td class="org-left">border-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Border Style</td>
+<td class="org-left">border-{solid, dashed, dotted, double, hidden, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Divide Width</td>
+<td class="org-left">divide-{x, y}-{0, 2, 4, 8, reverse}</td>
+</tr>
+
+<tr>
+<td class="org-left">Divide Color</td>
+<td class="org-left">divide-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Divide Style</td>
+<td class="org-left">divide-{solid, dashed, dotted, double, hidden, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Width</td>
+<td class="org-left">outline-{0, 1, 2, 4, 8}</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Color</td>
+<td class="org-left">outline-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Style</td>
+<td class="org-left">outline-{solid, dashed, dotted, double, hidden, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Outline Offset</td>
+<td class="org-left">outline-offset-{0, 1, 2, 4, 8}</td>
+</tr>
+
+<tr>
+<td class="org-left">Ring Width</td>
+<td class="org-left">ring={, 0, 1, 2, 4, 8, inset}</td>
+</tr>
+
+<tr>
+<td class="org-left">Ring Color</td>
+<td class="org-left">ring-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Ring Offset Width</td>
+<td class="org-left">ring-offset-{0, 1, 2, 4, 8}</td>
+</tr>
+
+<tr>
+<td class="org-left">Ring Offset Color</td>
+<td class="org-left">ring-offset-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org66f255d" class="outline-3">
+<h3 id="org66f255d"><span class="section-number-3">4.8.</span> Effects</h3>
+<div class="outline-text-3" id="text-4-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Box Shadow</td>
+<td class="org-left">shadow-{, sm, md, lg, xl, 2xl, inner, none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Box Shadow Color</td>
+<td class="org-left">shadow-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Opacity</td>
+<td class="org-left">opacity-{0, 5, 10, 20, 25, 30, 40, 50, 60, 70. 75, 80, 90, 92, 100}</td>
+</tr>
+
+<tr>
+<td class="org-left">Mix Blend Mode</td>
+<td class="org-left">mix-blend-{normal, multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color}</td>
+</tr>
+
+<tr>
+<td class="org-left">Background Blend Mode</td>
+<td class="org-left">bg-blend-{normal, multiply, screen, &#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org8845f8c" class="outline-3">
+<h3 id="org8845f8c"><span class="section-number-3">4.9.</span> Filters</h3>
+<div class="outline-text-3" id="text-4-9">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Blur</td>
+<td class="org-left">blur-{, none, sm, md, lg, xl, 2xl, 3xl}</td>
+</tr>
+
+<tr>
+<td class="org-left">Brightness</td>
+<td class="org-left">brightness-{0, 50, 75, 90, 100, 105, 110, 125, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Contrast</td>
+<td class="org-left">contrast-{0, 50, 75, 100, 125, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Drop Shadow</td>
+<td class="org-left">drop-shadow-{, none, sm, md, lg, xl, 2xl}</td>
+</tr>
+
+<tr>
+<td class="org-left">Grayscale</td>
+<td class="org-left">grayscale-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Hue Rotate</td>
+<td class="org-left">hue-rotate-{0, 15, 30, 60, 90, 180}</td>
+</tr>
+
+<tr>
+<td class="org-left">Invert</td>
+<td class="org-left">invert-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Saturate</td>
+<td class="org-left">saturate-{0, 50, 100, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Sepia</td>
+<td class="org-left">sepia-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Blur</td>
+<td class="org-left">backdrop-blur-{, none, sm, md, lg, xl, 2xl}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Brightness</td>
+<td class="org-left">backdrop-brightness-{0, 50, 75, 90, 95, 100, 105, 110, 125, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Contrast</td>
+<td class="org-left">backdrop-contrast-{0, 50, 75, 100, 125, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Greyscale</td>
+<td class="org-left">backdrop-grayscale-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Hue Rotate</td>
+<td class="org-left">backdrop-hue-rotate-{0, 15, 30, 60, 90, 180}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Invert</td>
+<td class="org-left">backdrop-invert-{, 0}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Opacity</td>
+<td class="org-left">backdrop-opacity-{0, 5, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Saturate</td>
+<td class="org-left">backdrop-saturate-{0, 50, 100, 150, 200}</td>
+</tr>
+
+<tr>
+<td class="org-left">Backdrop Sepia</td>
+<td class="org-left">backdrop-sepia-{, 0}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org356a990" class="outline-3">
+<h3 id="org356a990"><span class="section-number-3">4.10.</span> Tables</h3>
+<div class="outline-text-3" id="text-4-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Border Collapse</td>
+<td class="org-left">border-{collapse, separate}</td>
+</tr>
+
+<tr>
+<td class="org-left">Table Layout</td>
+<td class="org-left">table-{auto, fixed}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org8b5e3aa" class="outline-3">
+<h3 id="org8b5e3aa"><span class="section-number-3">4.11.</span> Transitions &amp; Animation</h3>
+<div class="outline-text-3" id="text-4-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Transition Property</td>
+<td class="org-left">transition-{, none, all, colors, opacity, shadow, transform}</td>
+</tr>
+
+<tr>
+<td class="org-left">Transition Duration</td>
+<td class="org-left">duration-{75, 100, 150, 200, 300, 500, 700, 1000}</td>
+</tr>
+
+<tr>
+<td class="org-left">Transition Timing Functions</td>
+<td class="org-left">ease-{linear, in, out, in-out}</td>
+</tr>
+
+<tr>
+<td class="org-left">Transition Delay</td>
+<td class="org-left">delay-{75, 100, 150, 200, 300, 500, 700, 1000}</td>
+</tr>
+
+<tr>
+<td class="org-left">Animation</td>
+<td class="org-left">animate-{none, spin, ping, pulse, bounce,</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgdbe7c93" class="outline-3">
+<h3 id="orgdbe7c93"><span class="section-number-3">4.12.</span> Transforms</h3>
+<div class="outline-text-3" id="text-4-12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Scale</td>
+<td class="org-left">scale-{, x, y}-{0, 50, 75, 90, 95, 100, 105, 110, 125, 150}</td>
+</tr>
+
+<tr>
+<td class="org-left">Rotate</td>
+<td class="org-left">rotate-{0, 1, 2, 3, 6, 12, 45, 90, 100}</td>
+</tr>
+
+<tr>
+<td class="org-left">Translate</td>
+<td class="org-left">translate-{x, y}-{px, 0.5, 1, 1.5, 2, 3, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Skew</td>
+<td class="org-left">skew-{x, y}-{0, 1, 2, 3, 6, 12}</td>
+</tr>
+
+<tr>
+<td class="org-left">Transform Origin</td>
+<td class="org-left">origin-{center, top, bottom, left, bottom-right, &#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org89c0657" class="outline-3">
+<h3 id="org89c0657"><span class="section-number-3">4.13.</span> Interactivity</h3>
+<div class="outline-text-3" id="text-4-13">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Accent Color</td>
+<td class="org-left">accent-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Appearance</td>
+<td class="org-left">appearance-none</td>
+</tr>
+
+<tr>
+<td class="org-left">Cursor</td>
+<td class="org-left">cursor-{auto, default, pointer, wait, text, move, help, not-allowed, none, context-menu, progress, cell, crosshair, vertical-text, alias, copy, no-drop, grap, grabbing, all-scroll, col-resize, row-resize, n-resize, e-resize, s-resize, w-resize, nw-resize, se-resize, sw-resize, nesw-resize, nwse-resize, zoom-in, zoom-out</td>
+</tr>
+
+<tr>
+<td class="org-left">Caret Color</td>
+<td class="org-left">caret-{inherit, current, transparent, black, white, slate-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Pointer Events</td>
+<td class="org-left">pointer-events-{none, auto}</td>
+</tr>
+
+<tr>
+<td class="org-left">Resize</td>
+<td class="org-left">resize-{none, y, x}, resize</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Behavior</td>
+<td class="org-left">scroll-{auto, smooth}</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Margin</td>
+<td class="org-left">scroll-{{mx, my, mt, mr, &#x2026;}-{0, px, 0.5, 1, 2, 2.5, &#x2026;}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Padding</td>
+<td class="org-left">scroll-{{p, px, py, pt, pr, &#x2026;}-{0, px, 0.5, 1, 2, 2.5, &#x2026;}}</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Snap Align</td>
+<td class="org-left">snap-{start, end, center, align-none}</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Snap Stop</td>
+<td class="org-left">snap-{normal, always}</td>
+</tr>
+
+<tr>
+<td class="org-left">Scroll Snap Type</td>
+<td class="org-left">snap-{none, x, y, both, mandatory, proximity}</td>
+</tr>
+
+<tr>
+<td class="org-left">Touch Action</td>
+<td class="org-left">touch-{auto, none, pan-{x, left, right, y, up, down}, pinch-zoom, manipulation}</td>
+</tr>
+
+<tr>
+<td class="org-left">User Select</td>
+<td class="org-left">select-{none, text, all, auto}</td>
+</tr>
+
+<tr>
+<td class="org-left">Will Change</td>
+<td class="org-left">will-change-{auto, scroll, content, transform}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org3d146bf" class="outline-3">
+<h3 id="org3d146bf"><span class="section-number-3">4.14.</span> SVG</h3>
+<div class="outline-text-3" id="text-4-14">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Fill</td>
+<td class="org-left">fill-{inherit, current, transparent, black, white, slate-50&#x2026;, gray-50&#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Stroke</td>
+<td class="org-left">stroke-{inherit, current, transparent, &#x2026;}</td>
+</tr>
+
+<tr>
+<td class="org-left">Stroke Width</td>
+<td class="org-left">stroke-{0, 1, 2}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org5e4e39a" class="outline-3">
+<h3 id="org5e4e39a"><span class="section-number-3">4.15.</span> Accessibility</h3>
+<div class="outline-text-3" id="text-4-15">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Css Term</th>
+<th scope="col" class="org-left">Tw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Screen Readers</td>
+<td class="org-left">sr-only, not-sr-only</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Muhammad Ridho</p>
+<p class="date">Created: 2022-03-30 Wed 17:11</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
