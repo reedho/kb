@@ -1,0 +1,1529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-04-10 Sun 07:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RadixUI Primitives Cheatsheet</title>
+<meta name="author" content="Muhammad Ridho" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">RadixUI Primitives Cheatsheet</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2211c6f">1. Accordion</a></li>
+<li><a href="#orge5c4e2d">2. AlertDialog</a></li>
+<li><a href="#orgb9ebf27">3. AspectRatio</a></li>
+<li><a href="#orgf89093b">4. Avatar</a></li>
+<li><a href="#orgabe3163">5. Checkbox</a></li>
+<li><a href="#orgd58807f">6. Collapsible</a></li>
+<li><a href="#orgf11c622">7. ContextMenu</a></li>
+<li><a href="#orge06e62e">8. Dialog</a></li>
+<li><a href="#org0adb58b">9. DropdownMenu</a></li>
+<li><a href="#org2d5b982">10. HoverCard</a></li>
+<li><a href="#orgac056ae">11. Label</a></li>
+<li><a href="#orgbb46b8c">12. NavigationMenu</a></li>
+<li><a href="#org1473109">13. Popover</a></li>
+<li><a href="#orgd42b2b5">14. Progress</a></li>
+<li><a href="#orgc72e53a">15. RadioGroup</a></li>
+<li><a href="#org67b2311">16. ScrollArea</a></li>
+<li><a href="#orgfd9bd3a">17. Select</a></li>
+<li><a href="#orgc02afd6">18. Separator</a></li>
+<li><a href="#orgd6442a8">19. Slider</a></li>
+<li><a href="#org26545d9">20. Switch</a></li>
+<li><a href="#orgc1a1740">21. Tabs</a></li>
+<li><a href="#orgd4d408c">22. Toast</a></li>
+<li><a href="#org12b9446">23. Toggle</a></li>
+<li><a href="#org68a7b9f">24. ToggleGroup</a></li>
+<li><a href="#orgcd7d981">25. Toolbar</a></li>
+<li><a href="#org6faddd5">26. Tooltip</a></li>
+</ul>
+</div>
+</div>
+<p>
+Taken from: <a href="https://github.com/tone-row/radix-primitives-cheatsheet">https://github.com/tone-row/radix-primitives-cheatsheet</a>
+</p>
+
+<div id="outline-container-org2211c6f" class="outline-2">
+<h2 id="org2211c6f"><span class="section-number-2">1.</span> Accordion</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/accordion">https://www.radix-ui.com/docs/primitives/components/accordion</a>
+</p>
+
+<p>
+A vertically stacked set of interactive headings that each reveal an associated
+section of content.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Can expand one or multiple items.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">export default function App() {
+  return (
+    &lt;Accordion.Root type="single" defaultValue="option-2"&gt;
+      &lt;Accordion.Item value="option-1"&gt;
+        &lt;Accordion.Header asChild&gt;
+          &lt;Accordion.Trigger&gt;Option 1&lt;/Accordion.Trigger&gt;
+        &lt;/Accordion.Header&gt;
+        &lt;Accordion.Content&gt;
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+          voluptates ea aspernatur! Nesciunt culpa officiis, assumenda sequi,
+          odit debitis, eos natus minima doloremque nemo vel sunt iste id at
+          cupiditate.
+        &lt;/Accordion.Content&gt;
+      &lt;/Accordion.Item&gt;
+      &lt;Accordion.Item value="option-2"&gt;
+        &lt;Accordion.Header asChild&gt;
+          &lt;Accordion.Trigger&gt;Option 2&lt;/Accordion.Trigger&gt;
+        &lt;/Accordion.Header&gt;
+        &lt;Accordion.Content&gt;
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+          voluptates ea aspernatur! Nesciunt culpa officiis, assumenda sequi,
+          odit debitis, eos natus minima doloremque nemo vel sunt iste id at
+          cupiditate.
+        &lt;/Accordion.Content&gt;
+      &lt;/Accordion.Item&gt;
+    &lt;/Accordion.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge5c4e2d" class="outline-2">
+<h2 id="orge5c4e2d"><span class="section-number-2">2.</span> AlertDialog</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/alert-dialog">https://www.radix-ui.com/docs/primitives/components/alert-dialog</a>
+</p>
+
+<p>
+A modal dialog that interrupts the user with important content and expects a
+response.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Focus is automatically trapped.</li>
+<li>Can be controlled or uncontrolled.</li>
+<li>Manages screen reader announcements with Title and Description components.</li>
+<li>Esc closes the component automatically.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as AlertDialog from "@radix-ui/react-alert-dialog";
+
+export default function App() {
+  return (
+    &lt;AlertDialog.Root&gt;
+      &lt;AlertDialog.Trigger&gt;Click Me&lt;/AlertDialog.Trigger&gt;
+      &lt;AlertDialog.Portal&gt;
+        &lt;AlertDialog.Overlay
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0, 0, 0, 0.5)",
+          }}
+        /&gt;
+        &lt;AlertDialog.Content
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "white",
+          }}
+        &gt;
+          &lt;AlertDialog.Title&gt;Hello World&lt;/AlertDialog.Title&gt;
+          &lt;AlertDialog.Description&gt;
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. In
+            exercitationem animi qui laudantium cum accusamus nulla nostrum.
+            Quisquam natus voluptatibus rem laudantium accusamus, magnam atque
+            quasi sunt officia quaerat ullam!
+          &lt;/AlertDialog.Description&gt;
+          &lt;AlertDialog.Cancel&gt;Cancel&lt;/AlertDialog.Cancel&gt;
+          &lt;AlertDialog.Action&gt;OK&lt;/AlertDialog.Action&gt;
+        &lt;/AlertDialog.Content&gt;
+      &lt;/AlertDialog.Portal&gt;
+    &lt;/AlertDialog.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb9ebf27" class="outline-2">
+<h2 id="orgb9ebf27"><span class="section-number-2">3.</span> AspectRatio</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/aspect-ratio">https://www.radix-ui.com/docs/primitives/components/aspect-ratio</a>
+</p>
+
+<p>
+Displays content within a desired ratio.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Accepts any custom ratio.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as AspectRatio from "@radix-ui/react-aspect-ratio";
+
+export default function App() {
+  return (
+    &lt;div style={{ width: "300px" }}&gt;
+      &lt;AspectRatio.Root ratio={4 / 3} asChild&gt;
+        &lt;img
+          src="http://placekitten.com/400/400"
+          alt="Kitten"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        /&gt;
+      &lt;/AspectRatio.Root&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf89093b" class="outline-2">
+<h2 id="orgf89093b"><span class="section-number-2">4.</span> Avatar</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/avatar">https://www.radix-ui.com/docs/primitives/components/avatar</a>
+</p>
+
+<p>
+An image element with a fallback for representing the user.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Automatic and manual control over when the image renders.</li>
+<li>Fallback part accepts any children.</li>
+<li>Optionally delay fallback rendering to avoid content flashing.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Avatar from "@radix-ui/react-avatar";
+
+export default function App() {
+  return (
+    &lt;Avatar.Root&gt;
+      &lt;Avatar.Image
+        src="http://placekitten.com/100/100"
+        style={{ borderRadius: "50%" }}
+      /&gt;
+      &lt;Avatar.Fallback&gt;Kitten&lt;/Avatar.Fallback&gt;
+    &lt;/Avatar.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgabe3163" class="outline-2">
+<h2 id="orgabe3163"><span class="section-number-2">5.</span> Checkbox</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/checkbox">https://www.radix-ui.com/docs/primitives/components/checkbox</a>
+</p>
+
+<p>
+A control that allows the user to toggle between checked and not checked.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Supports indeterminate state.</li>
+<li>Full keyboard navigation.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Checkbox from "@radix-ui/react-checkbox";
+
+export default function App() {
+  return (
+    &lt;Checkbox.Root&gt;
+      &lt;Checkbox.Indicator
+        style={{
+          width: 10,
+          height: 10,
+          backgroundColor: "black",
+          display: "inline-block",
+        }}
+      /&gt;
+      Checkbox Item
+    &lt;/Checkbox.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd58807f" class="outline-2">
+<h2 id="orgd58807f"><span class="section-number-2">6.</span> Collapsible</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/collapsible">https://www.radix-ui.com/docs/primitives/components/collapsible</a>
+</p>
+
+<p>
+An interactive component which expands/collapses a panel.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Collapsible from "@radix-ui/react-collapsible";
+
+export default function App() {
+  return (
+    &lt;Collapsible.Root&gt;
+      &lt;Collapsible.Trigger&gt;Collapsible Trigger&lt;/Collapsible.Trigger&gt;
+      &lt;Collapsible.Content&gt;
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
+        temporibus, magni enim aspernatur repudiandae consequatur recusandae
+        illo labore deleniti a necessitatibus aliquam ipsum. Molestias
+        consequatur ut maiores veritatis. Voluptatum, optio.
+      &lt;/Collapsible.Content&gt;
+    &lt;/Collapsible.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf11c622" class="outline-2">
+<h2 id="orgf11c622"><span class="section-number-2">7.</span> ContextMenu</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/context-menu">https://www.radix-ui.com/docs/primitives/components/context-menu</a>
+</p>
+
+<p>
+Displays a menu located at the pointer, triggered by a right-click or a long-press.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Supports submenus with configurable reading direction.</li>
+<li>Supports items, labels, groups of items.</li>
+<li>Supports checkable items (single or multiple).</li>
+<li>Supports modal and non-modal modes.</li>
+<li>Customize side, alignment, offsets, collision handling.</li>
+<li>Focus is fully managed.</li>
+<li>Full keyboard navigation.</li>
+<li>Typeahead support.</li>
+<li>Dismissing and layering behavior is highly customizable.</li>
+<li>Triggers with a long-press on touch devices</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as ContextMenu from "@radix-ui/react-context-menu";
+
+export default function App() {
+  return (
+    &lt;ContextMenu.Root&gt;
+      &lt;ContextMenu.Trigger&gt;
+        Right-click this text to open a Context Menu
+      &lt;/ContextMenu.Trigger&gt;
+      &lt;ContextMenu.Content style={{ backgroundColor: "white" }}&gt;
+        &lt;ContextMenu.Label&gt;Items Label&lt;/ContextMenu.Label&gt;
+        &lt;ContextMenu.Item&gt;Item One&lt;/ContextMenu.Item&gt;
+        &lt;ContextMenu.Item&gt;Item Two&lt;/ContextMenu.Item&gt;
+        &lt;ContextMenu.Item&gt;Item Three&lt;/ContextMenu.Item&gt;
+        &lt;ContextMenu.Separator
+          style={{ height: "1px", backgroundColor: "black" }}
+        /&gt;
+        &lt;ContextMenu.Label&gt;Items Label&lt;/ContextMenu.Label&gt;
+        &lt;ContextMenu.Item&gt;Item Four&lt;/ContextMenu.Item&gt;
+        &lt;ContextMenu.Item&gt;Item Five&lt;/ContextMenu.Item&gt;
+        &lt;ContextMenu.Item&gt;Item Six&lt;/ContextMenu.Item&gt;
+      &lt;/ContextMenu.Content&gt;
+    &lt;/ContextMenu.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge06e62e" class="outline-2">
+<h2 id="orge06e62e"><span class="section-number-2">8.</span> Dialog</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/dialog">https://www.radix-ui.com/docs/primitives/components/dialog</a>
+</p>
+
+<p>
+A window overlaid on either the primary window or another dialog window,
+rendering the content underneath inert.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Supports modal and non-modal modes.</li>
+<li>Focus is automatically trapped when modal.</li>
+<li>Can be controlled or uncontrolled.</li>
+<li>Manages screen reader announcements with Title and Description components.</li>
+<li>Esc closes the component automatically.</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Dialog from "@radix-ui/react-dialog";
+
+export default function App() {
+  return (
+    &lt;Dialog.Root&gt;
+      &lt;Dialog.Trigger&gt;Open a Dialog&lt;/Dialog.Trigger&gt;
+      &lt;Dialog.Portal&gt;
+        &lt;Dialog.Overlay
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0, 0, 0, 0.5)",
+          }}
+        /&gt;
+        &lt;Dialog.Content
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "white",
+          }}
+        &gt;
+          &lt;Dialog.Title&gt;Dialog Title&lt;/Dialog.Title&gt;
+          &lt;Dialog.Description&gt;Dialog Description&lt;/Dialog.Description&gt;
+          &lt;Dialog.Close&gt;Close&lt;/Dialog.Close&gt;
+        &lt;/Dialog.Content&gt;
+      &lt;/Dialog.Portal&gt;
+    &lt;/Dialog.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0adb58b" class="outline-2">
+<h2 id="org0adb58b"><span class="section-number-2">9.</span> DropdownMenu</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/dropdown-menu">https://www.radix-ui.com/docs/primitives/components/dropdown-menu</a>
+</p>
+
+<p>
+Displays a menu to the user—such as a set of actions or functions—triggered by a button.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Supports submenus with configurable reading direction.</li>
+<li>Supports items, labels, groups of items.</li>
+<li>Supports checkable items (single or multiple).</li>
+<li>Supports modal and non-modal modes.</li>
+<li>Customize side, alignment, offsets, collision handling.</li>
+<li>Optionally render a pointing arrow.</li>
+<li>Focus is fully managed.</li>
+<li>Full keyboard navigation.</li>
+<li>Typeahead support.</li>
+<li>Dismissing and layering behavior is highly customizable.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
+export default function App() {
+  return (
+    &lt;DropdownMenu.Root&gt;
+      &lt;DropdownMenu.Trigger&gt;Open Dropdown Menu&lt;/DropdownMenu.Trigger&gt;
+      &lt;DropdownMenu.Content&gt;
+        &lt;DropdownMenu.Item&gt;Item 1&lt;/DropdownMenu.Item&gt;
+        &lt;DropdownMenu.Item&gt;Item 2&lt;/DropdownMenu.Item&gt;
+      &lt;/DropdownMenu.Content&gt;
+    &lt;/DropdownMenu.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2d5b982" class="outline-2">
+<h2 id="org2d5b982"><span class="section-number-2">10.</span> HoverCard</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/hover-card">https://www.radix-ui.com/docs/primitives/components/hover-card</a>
+</p>
+
+<p>
+For sighted users to preview content available behind a link.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Customize side, alignment, offsets, collision handling.</li>
+<li>Optionally render a pointing arrow.</li>
+<li>Supports custom open and close delays.</li>
+<li>Opens on hover only.</li>
+<li>Ignored by screen readers.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as HoverCard from "@radix-ui/react-hover-card";
+
+const cardBackgroundColor = "#ddd";
+
+export default function App() {
+  return (
+    &lt;HoverCard.Root&gt;
+      &lt;HoverCard.Trigger&gt;Trigger Hover Card&lt;/HoverCard.Trigger&gt;
+      &lt;HoverCard.Content style={{ backgroundColor: cardBackgroundColor }}&gt;
+        Hover Card Content
+        &lt;HoverCard.Arrow style={{ fill: cardBackgroundColor }} /&gt;
+      &lt;/HoverCard.Content&gt;
+    &lt;/HoverCard.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgac056ae" class="outline-2">
+<h2 id="orgac056ae"><span class="section-number-2">11.</span> Label</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/label">https://www.radix-ui.com/docs/primitives/components/label</a>
+</p>
+
+<p>
+Renders an accessible label associated with controls.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Text selection is prevented when double clicking label.</li>
+<li>Supports nested controls.</li>
+<li>Supports custom controls.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Label from "@radix-ui/react-label";
+
+export default function App() {
+  return (
+    &lt;Label.Root htmlFor="firstName"&gt;
+      First Name &lt;input id="firstName" type="text" defaultValue="Robert" /&gt;
+    &lt;/Label.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgbb46b8c" class="outline-2">
+<h2 id="orgbb46b8c"><span class="section-number-2">12.</span> NavigationMenu</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/navigation-menu">https://www.radix-ui.com/docs/primitives/components/navigation-menu</a>
+</p>
+
+<p>
+A collection of links for navigating websites.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Flexible layout structure with managed tab focus.</li>
+<li>Supports submenus.</li>
+<li>Optional active item indicator.</li>
+<li>Full keyboard navigation.</li>
+<li>Exposes CSS variables for advanced animation.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+
+export default function App() {
+  return (
+    &lt;NavigationMenu.Root&gt;
+      &lt;NavigationMenu.List&gt;
+        &lt;NavigationMenu.Item&gt;
+          &lt;NavigationMenu.Trigger&gt;Trigger&lt;/NavigationMenu.Trigger&gt;
+          &lt;NavigationMenu.Content&gt;
+            &lt;NavigationMenu.List&gt;
+              &lt;NavigationMenu.Item&gt;
+                &lt;NavigationMenu.Link&gt;Item 1&lt;/NavigationMenu.Link&gt;
+              &lt;/NavigationMenu.Item&gt;
+            &lt;/NavigationMenu.List&gt;
+          &lt;/NavigationMenu.Content&gt;
+        &lt;/NavigationMenu.Item&gt;
+        &lt;NavigationMenu.Indicator /&gt;
+      &lt;/NavigationMenu.List&gt;
+      &lt;NavigationMenu.Viewport /&gt;
+    &lt;/NavigationMenu.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1473109" class="outline-2">
+<h2 id="org1473109"><span class="section-number-2">13.</span> Popover</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/popover">https://www.radix-ui.com/docs/primitives/components/popover</a>
+</p>
+
+<p>
+Displays rich content in a portal, triggered by a button.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Customize side, alignment, offsets, collision handling.</li>
+<li>Optionally render a pointing arrow.</li>
+<li>Focus is fully managed and customizable.</li>
+<li>Supports modal and non-modal modes.</li>
+<li>Dismissing and layering behavior is highly customizable.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Popover from "@radix-ui/react-popover";
+
+const popoverBackgroundColor = "#ddd";
+
+export default function App() {
+  return (
+    &lt;Popover.Root modal&gt;
+      &lt;Popover.Trigger&gt;Trigger&lt;/Popover.Trigger&gt;
+      &lt;Popover.Content style={{ backgroundColor: popoverBackgroundColor }}&gt;
+        This is the content
+        &lt;Popover.Close&gt;Close&lt;/Popover.Close&gt;
+        &lt;Popover.Arrow style={{ fill: popoverBackgroundColor }} /&gt;
+      &lt;/Popover.Content&gt;
+    &lt;/Popover.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd42b2b5" class="outline-2">
+<h2 id="orgd42b2b5"><span class="section-number-2">14.</span> Progress</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/progress">https://www.radix-ui.com/docs/primitives/components/progress</a>
+</p>
+
+<p>
+Displays an indicator showing the completion progress of a task, typically
+displayed as a progress bar.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Provides context for assistive technology to read the progress of a task.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Progress from "@radix-ui/react-progress";
+
+const value = 75;
+
+export default function App() {
+  return (
+    &lt;Progress.Root
+      value={value}
+      max={100}
+      style={{
+        position: "relative",
+        width: 300,
+        height: 25,
+        backgroundColor: "lightgrey",
+      }}
+    &gt;
+      &lt;Progress.Indicator
+        style={{ height: "100%", backgroundColor: "grey", width: value + "%" }}
+      /&gt;
+    &lt;/Progress.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc72e53a" class="outline-2">
+<h2 id="orgc72e53a"><span class="section-number-2">15.</span> RadioGroup</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/radio-group">https://www.radix-ui.com/docs/primitives/components/radio-group</a>
+</p>
+
+<p>
+A set of checkable buttons—known as radio buttons—where no more than one of the
+buttons can be checked at a time.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Supports horizontal/vertical orientation.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as RadioGroup from "@radix-ui/react-radio-group";
+import { styled } from "@stitches/react";
+
+const RadioGroupIndicator = styled(RadioGroup.Indicator, {
+  width: "10px",
+  height: "10px",
+  display: "inline-block",
+  backgroundColor: "black",
+  borderRadius: "50%",
+});
+
+export default function App() {
+  return (
+    &lt;RadioGroup.Root defaultValue="one"&gt;
+      &lt;RadioGroup.Item value="one"&gt;
+        &lt;RadioGroupIndicator /&gt;
+        One
+      &lt;/RadioGroup.Item&gt;
+      &lt;RadioGroup.Item value="two"&gt;
+        &lt;RadioGroupIndicator /&gt;
+        Two
+      &lt;/RadioGroup.Item&gt;
+    &lt;/RadioGroup.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org67b2311" class="outline-2">
+<h2 id="org67b2311"><span class="section-number-2">16.</span> ScrollArea</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/scroll-area">https://www.radix-ui.com/docs/primitives/components/scroll-area</a>
+</p>
+
+<p>
+Augments native scroll functionality for custom, cross-browser styling.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Scrollbar sits on top of the scrollable content, taking up no space.</li>
+<li>Scrolling is native; no underlying position movements via CSS transformations.</li>
+<li>Shims pointer behaviors only when interacting with the controls, so keyboard
+controls are unaffected.</li>
+<li>Supports RTL</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as ScrollArea from "@radix-ui/react-scroll-area";
+
+export default function App() {
+  return (
+    &lt;ScrollArea.Root
+      style={{ width: "200px", height: "200px", overflow: "hidden" }}
+    &gt;
+      &lt;ScrollArea.Viewport style={{ width: "100%", height: "100%" }}&gt;
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet aut
+        sapiente possimus quisquam. Obcaecati eaque reprehenderit, dolor culpa
+        recusandae delectus, inventore, libero voluptates sed a consequuntur
+        natus repudiandae praesentium est? Lorem ipsum dolor sit amet
+        consectetur, adipisicing elit. Amet aut sapiente possimus quisquam.
+        Obcaecati eaque reprehenderit, dolor culpa recusandae delectus,
+        inventore, libero voluptates sed a consequuntur natus repudiandae
+        praesentium est?
+      &lt;/ScrollArea.Viewport&gt;
+      &lt;ScrollArea.Scrollbar
+        orientation="vertical"
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: 10,
+          bottom: "var(--radix-scroll-area-corner-height)",
+          backgroundColor: "lightgrey",
+        }}
+      &gt;
+        &lt;ScrollArea.Thumb style={{ background: "darkgrey" }} /&gt;
+      &lt;/ScrollArea.Scrollbar&gt;
+      &lt;ScrollArea.Corner /&gt;
+    &lt;/ScrollArea.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgfd9bd3a" class="outline-2">
+<h2 id="orgfd9bd3a"><span class="section-number-2">17.</span> Select</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/select">https://www.radix-ui.com/docs/primitives/components/select</a>
+</p>
+
+<p>
+Displays a list of options for the user to pick from—triggered by a button.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Supports items, labels, groups of items.</li>
+<li>Focus is fully managed.</li>
+<li>Full keyboard navigation.</li>
+<li>Typeahead support.</li>
+<li>Supports Right to Left direction.</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Select from "@radix-ui/react-select";
+
+export default function App() {
+  return (
+    &lt;Select.Root defaultValue="Hello World"&gt;
+      &lt;Select.Trigger aria-label="Options"&gt;
+        &lt;Select.Value /&gt;
+        &lt;Select.Icon style={{ fontFamily: "sans-serif" }} /&gt;
+      &lt;/Select.Trigger&gt;
+      &lt;Select.Content style={{ background: "white" }}&gt;
+        &lt;Select.ScrollUpButton /&gt;
+        &lt;Select.Viewport&gt;
+          &lt;Select.Item value="Hello World"&gt;
+            &lt;Select.ItemText&gt;Hello World&lt;/Select.ItemText&gt;
+            &lt;Select.ItemIndicator /&gt;
+          &lt;/Select.Item&gt;
+          &lt;Select.Item value="Goodbye World"&gt;
+            &lt;Select.ItemText&gt;Goodbye World&lt;/Select.ItemText&gt;
+            &lt;Select.ItemIndicator /&gt;
+          &lt;/Select.Item&gt;
+          &lt;Select.Separator /&gt;
+        &lt;/Select.Viewport&gt;
+        &lt;Select.ScrollDownButton /&gt;
+      &lt;/Select.Content&gt;
+    &lt;/Select.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc02afd6" class="outline-2">
+<h2 id="orgc02afd6"><span class="section-number-2">18.</span> Separator</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/separator">https://www.radix-ui.com/docs/primitives/components/separator</a>
+</p>
+
+<p>
+Visually or semantically separates content.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Supports horizontal and vertical orientations.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Separator from "@radix-ui/react-separator";
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;span&gt;Thing One&lt;/span&gt;
+      &lt;Separator.Root asChild&gt;
+        &lt;span&gt;-&lt;/span&gt;
+      &lt;/Separator.Root&gt;
+      &lt;span&gt;Thing Two&lt;/span&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd6442a8" class="outline-2">
+<h2 id="orgd6442a8"><span class="section-number-2">19.</span> Slider</h2>
+<div class="outline-text-2" id="text-19">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/slider">https://www.radix-ui.com/docs/primitives/components/slider</a>
+</p>
+
+<p>
+An input where the user selects a value from within a given range.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Supports multiple thumbs.</li>
+<li>Supports a minimum value between thumbs.</li>
+<li>Supports touch or click on track to update value.</li>
+<li>Supports Right to Left direction.</li>
+<li>Full keyboard navigation.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Slider from "@radix-ui/react-slider";
+
+export default function App() {
+  return (
+    &lt;Slider.Root
+      defaultValue={[50]}
+      max={100}
+      step={1}
+      aria-label="Volume"
+      style={{
+        position: "relative",
+        height: 10,
+        background: "lightgrey",
+        width: 300,
+        display: "block",
+      }}
+    &gt;
+      &lt;Slider.Track&gt;
+        &lt;Slider.Range
+          style={{
+            position: "absolute",
+            height: "100%",
+            backgroundColor: "#666",
+          }}
+        /&gt;
+      &lt;/Slider.Track&gt;
+      &lt;Slider.Thumb
+        style={{
+          width: 10,
+          height: 10,
+          backgroundColor: "black",
+          display: "block",
+        }}
+      /&gt;
+    &lt;/Slider.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org26545d9" class="outline-2">
+<h2 id="org26545d9"><span class="section-number-2">20.</span> Switch</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/switch">https://www.radix-ui.com/docs/primitives/components/switch</a>
+</p>
+
+<p>
+A control that allows the user to toggle between checked and not checked.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Switch from "@radix-ui/react-switch";
+import { styled } from "@stitches/react";
+
+const SwitchThumb = styled(Switch.Thumb, {
+  width: "50%",
+  background: "darkgrey",
+  height: "100%",
+  display: "block",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  "&amp;[data-state=checked]": {
+    left: "50%",
+  },
+});
+
+export default function App() {
+  return (
+    &lt;Switch.Root style={{ width: 60, height: 30, position: "relative" }}&gt;
+      &lt;SwitchThumb /&gt;
+    &lt;/Switch.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc1a1740" class="outline-2">
+<h2 id="orgc1a1740"><span class="section-number-2">21.</span> Tabs</h2>
+<div class="outline-text-2" id="text-21">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/tabs">https://www.radix-ui.com/docs/primitives/components/tabs</a>
+</p>
+
+<p>
+A set of layered sections of content—known as tab panels—that are displayed one at a time.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Can be controlled or uncontrolled.</li>
+<li>Supports horizontal/vertical orientation.</li>
+<li>Supports automatic/manual activation.</li>
+<li>Full keyboard navigation.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Tabs from "@radix-ui/react-tabs";
+
+export default function App() {
+  return (
+    &lt;Tabs.Root defaultValue="One"&gt;
+      &lt;Tabs.List&gt;
+        &lt;Tabs.Trigger value="One"&gt;One&lt;/Tabs.Trigger&gt;
+        &lt;Tabs.Trigger value="Two"&gt;Two&lt;/Tabs.Trigger&gt;
+      &lt;/Tabs.List&gt;
+      &lt;Tabs.Content value="One"&gt;I am "One" content&lt;/Tabs.Content&gt;
+      &lt;Tabs.Content value="Two"&gt;I am "Two" content&lt;/Tabs.Content&gt;
+    &lt;/Tabs.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd4d408c" class="outline-2">
+<h2 id="orgd4d408c"><span class="section-number-2">22.</span> Toast</h2>
+<div class="outline-text-2" id="text-22">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/toast">https://www.radix-ui.com/docs/primitives/components/toast</a>
+</p>
+
+<p>
+A succinct message that is displayed temporarily.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Automatically closes.</li>
+<li>Pauses closing on hover, focus and window blur.</li>
+<li>Supports hotkey to jump to toast viewport.</li>
+<li>Supports closing via swipe gesture.</li>
+<li>Exposes CSS variables for swipe gesture animations.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Toast from "@radix-ui/react-toast";
+import { useState } from "react";
+
+export default function App() {
+  const [showToast, setShowToast] = useState(false);
+
+  return (
+    &lt;Toast.Provider swipeDirection="right"&gt;
+      &lt;button onClick={() =&gt; setShowToast(true)}&gt;Show 5 Second Toast&lt;/button&gt;
+      &lt;Toast.Root open={showToast} onOpenChange={setShowToast}&gt;
+        &lt;Toast.Title&gt;Toast Title&lt;/Toast.Title&gt;
+        &lt;Toast.Description&gt;
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod saepe
+          porro eius harum, rem eos voluptatem? Labore ipsum sed cumque fuga,
+          veniam perferendis quo accusamus esse ab illo sint reiciendis!
+        &lt;/Toast.Description&gt;
+        &lt;Toast.Action&gt;Action&lt;/Toast.Action&gt;
+        &lt;Toast.Close&gt;Close&lt;/Toast.Close&gt;
+      &lt;/Toast.Root&gt;
+      &lt;Toast.Viewport style={{ position: "fixed", bottom: 20, right: 20 }} /&gt;
+    &lt;/Toast.Provider&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org12b9446" class="outline-2">
+<h2 id="org12b9446"><span class="section-number-2">23.</span> Toggle</h2>
+<div class="outline-text-2" id="text-23">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/toggle">https://www.radix-ui.com/docs/primitives/components/toggle</a>
+</p>
+
+<p>
+A two-state button that can be either on or off.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Toggle from "@radix-ui/react-toggle";
+import { styled } from "@stitches/react";
+
+const ToggleRoot = styled(Toggle.Root, {
+  "&amp;[aria-pressed=true]": {
+    fontWeight: "bold",
+    fontSize: "1.2em",
+  },
+});
+
+export default function App() {
+  return &lt;ToggleRoot&gt;This is a toggle&lt;/ToggleRoot&gt;;
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org68a7b9f" class="outline-2">
+<h2 id="org68a7b9f"><span class="section-number-2">24.</span> ToggleGroup</h2>
+<div class="outline-text-2" id="text-24">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/toggle-group">https://www.radix-ui.com/docs/primitives/components/toggle-group</a>
+</p>
+
+<p>
+A set of two-state buttons that can be toggled on or off.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+<li>Supports horizontal/vertical orientation.</li>
+<li>Support single and multiple pressed buttons.</li>
+<li>Can be controlled or uncontrolled.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { styled } from "@stitches/react";
+
+const ToggleGroupItem = styled(ToggleGroup.Item, {
+  "&amp;[aria-pressed=true]": {
+    fontWeight: "bold",
+    fontSize: "1.2em",
+  },
+});
+
+export default function App() {
+  return (
+    &lt;ToggleGroup.Root type="multiple" defaultValue={["a", "c"]}&gt;
+      &lt;ToggleGroupItem value="a"&gt;Item A&lt;/ToggleGroupItem&gt;
+      &lt;ToggleGroupItem value="b"&gt;Item B&lt;/ToggleGroupItem&gt;
+      &lt;ToggleGroupItem value="c"&gt;Item C&lt;/ToggleGroupItem&gt;
+    &lt;/ToggleGroup.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgcd7d981" class="outline-2">
+<h2 id="orgcd7d981"><span class="section-number-2">25.</span> Toolbar</h2>
+<div class="outline-text-2" id="text-25">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/toolbar">https://www.radix-ui.com/docs/primitives/components/toolbar</a>
+</p>
+
+<p>
+A container for grouping a set of controls, such as buttons, toggle groups or
+dropdown menus.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Full keyboard navigation.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Toolbar from "@radix-ui/react-toolbar";
+
+export default function App() {
+  return (
+    &lt;Toolbar.Root style={{ display: "flex" }}&gt;
+      &lt;Toolbar.Button&gt;Toolbar Button&lt;/Toolbar.Button&gt;
+      &lt;Toolbar.Separator /&gt;
+      &lt;Toolbar.Link&gt;Some Link&lt;/Toolbar.Link&gt;
+      &lt;Toolbar.ToggleGroup type="single"&gt;
+        &lt;Toolbar.ToggleItem value="a"&gt;Item A&lt;/Toolbar.ToggleItem&gt;
+        &lt;Toolbar.ToggleItem value="b"&gt;Item B&lt;/Toolbar.ToggleItem&gt;
+        &lt;Toolbar.ToggleItem value="c"&gt;Item C&lt;/Toolbar.ToggleItem&gt;
+      &lt;/Toolbar.ToggleGroup&gt;
+    &lt;/Toolbar.Root&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org6faddd5" class="outline-2">
+<h2 id="org6faddd5"><span class="section-number-2">26.</span> Tooltip</h2>
+<div class="outline-text-2" id="text-26">
+<p>
+<a href="https://www.radix-ui.com/docs/primitives/components/tooltip">https://www.radix-ui.com/docs/primitives/components/tooltip</a>
+</p>
+
+<p>
+A popup that displays information related to an element when the element
+receives keyboard focus or the mouse hovers over it.
+</p>
+
+<p>
+Features
+</p>
+<ul class="org-ul">
+<li>Provider to control display delay globally.</li>
+<li>Opens when the trigger is focused or hovered.</li>
+<li>Closes when the trigger is activated or when pressing escape.</li>
+<li>Supports custom timings.</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-jsx">import * as Tooltip from "@radix-ui/react-tooltip";
+
+const cardBackgroundColor = "#ddd";
+
+export default function App() {
+  return (
+    &lt;Tooltip.Provider&gt;
+      &lt;Tooltip.Root&gt;
+        &lt;Tooltip.Trigger&gt;A Nice Tooltip&lt;/Tooltip.Trigger&gt;
+        &lt;Tooltip.Content style={{ backgroundColor: cardBackgroundColor }}&gt;
+          &lt;Tooltip.Arrow style={{ fill: cardBackgroundColor }} /&gt;
+          Good News!
+        &lt;/Tooltip.Content&gt;
+      &lt;/Tooltip.Root&gt;
+    &lt;/Tooltip.Provider&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Muhammad Ridho</p>
+<p class="date">Created: 2022-04-10 Sun 07:12</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
